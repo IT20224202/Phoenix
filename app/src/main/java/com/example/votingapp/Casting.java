@@ -14,7 +14,7 @@ import java.text.BreakIterator;
 
 public class Casting extends AppCompatActivity {
 
-    TextView Ename, Edesc, Edate, Edate, Cname, Cusername;
+    TextView Ename, Edesc, Edate, Cname, Cusername;
 
     DBEvent DB;
     DBCandidate db;
@@ -25,7 +25,7 @@ public class Casting extends AppCompatActivity {
         setContentView(R.layout.activity_casting);
 
         showVotingData();
-        onVote();
+        //onVote();
     }
 
     private void showVotingData() {
@@ -51,11 +51,11 @@ public class Casting extends AppCompatActivity {
         Cusername.setText(c_desc);
     }
 
-    public void onVote(){
+    /*public void onVote(){
         BreakIterator vote = null;
         String VoteCount = vote.getText().toString().trim();
         int count = Integer.parseInt(VoteCount);
         count++;
         vote.setText(String.valueOf(count);
-    }
+    }*/
 }
