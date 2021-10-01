@@ -39,21 +39,36 @@ public class Profile extends AppCompatActivity {
         updateUser = findViewById(R.id.prof_update);
         deleteUser = findViewById(R.id.prof_delete);
 
+        DB = new DBHelper(this);
+
+        Intent intent = getIntent();
+
+        //String Username = intent.getExtras().getString("username");
+
+        //Cursor res = (Cursor) DB.getUserInfo(Username);
+
+        /*String user_name = res.getString(0);
+        String user_username = res.getString(1);
+        String user_fullName = res.getString(0);
+        String user_email = res.getString(2);
+        String user_phone = res.getString(3);
+        String user_password = res.getString(4);
+
+        name.setText(user_name);
+        username.setText(user_username);
+        fullName.setText(user_fullName);
+        email.setText(user_email);
+        phone.setText(user_phone);
+        password.setText(user_password);*/
+
         //update
         updateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameTXT = name.getText().toString();
-                String usernameTXT = username.getText().toString();
-                String emailTXT = email.getText().toString();
-                String phoneTXT = phone.getText().toString();
-                String passTXT = password.getText().toString();
 
-                Boolean checkUpdateData = DB.updateData(nameTXT, usernameTXT, emailTXT, phoneTXT, passTXT);
-                if (checkUpdateData == true)
-                    Toast.makeText(Profile.this, "User updated!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(Profile.this, "User not updated!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Profile.this,UpdateUser.class);
+                //intent.putExtra("username", Username);
+                startActivity(intent);
             }
         });
 
@@ -64,44 +79,14 @@ public class Profile extends AppCompatActivity {
                 String usernameTXT = username.getText().toString();
 
                 Boolean checkDeleteData = DB.deleteData(usernameTXT);
-                if (checkDeleteData == true)
+                if (checkDeleteData == true) {
                     Toast.makeText(Profile.this, "User deleted!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Profile.this, SignIn.class);
+                    startActivity(intent);
+                }
                 else
                     Toast.makeText(Profile.this, "User not deleted!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //show data
-        showUserData();
-
-    }
-
-    private void showUserData() {
-
-        //Intent intent = getIntent();
-        //String user_name = intent.getStringExtra("name");
-        //String user_username = intent.getStringExtra("username");
-        //String user_fullName = intent.getStringExtra("name");
-        //String user_email = intent.getStringExtra("email");
-        //String user_phone = intent.getStringExtra("phoneNumber");
-        //String user_password = intent.getStringExtra("password");
-
-        /*Cursor res = DB.getData();
-
-        String user_name = res.getString(0);
-        String user_username = res.getString(1);
-        String user_fullName = res.getString(0);
-        String user_email = res.getString(2);
-        String user_phone = res.getString(3);
-        String user_password = res.getString(4);
-
-
-        name.setText(user_name);
-        username.setText(user_username);
-        fullName.setText(user_fullName);
-        email.setText(user_email);
-        phone.setText(user_phone);
-        password.setText(user_password);*/
-
     }
 }

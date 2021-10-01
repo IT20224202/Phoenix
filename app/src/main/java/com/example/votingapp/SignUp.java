@@ -34,6 +34,7 @@ public class SignUp extends AppCompatActivity {
 
         signUp = (Button) findViewById(R.id.bt_su);
         DB = new DBHelper(this);
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +53,6 @@ public class SignUp extends AppCompatActivity {
                         Boolean insert = DB.insertData(Name, Username, Email, PhoneNumber, Password);
                         if (insert == true) {
                             Toast.makeText(SignUp.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-
                             Intent intent = new Intent(getApplicationContext(), SignIn.class);
                             startActivity(intent);
                         }else {

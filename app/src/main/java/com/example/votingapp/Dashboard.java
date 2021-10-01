@@ -69,6 +69,5 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
         }
-
     }
 }

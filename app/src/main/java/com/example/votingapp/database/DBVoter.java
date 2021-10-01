@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.SimpleCursorAdapter;
 
+import java.util.HashMap;
+
 //import androidx.annotation.Nullable;
 
 public class DBVoter extends SQLiteOpenHelper {
@@ -106,7 +108,7 @@ public class DBVoter extends SQLiteOpenHelper {
 
 
 
-    //event table
+    //validations
     public Boolean checkVoterUsername(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from voters where username = ?", new String[] {username});
@@ -116,4 +118,17 @@ public class DBVoter extends SQLiteOpenHelper {
             return false;
     }
 
+    //get one - stack overflow
+    public HashMap<String, String> getVoterInfo(String username) {
+        HashMap<String, String> voterList = new HashMap<String, String>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM voters where username ='" + username + "'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                voterList.put("username", cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        return voterList;
+    }
 }

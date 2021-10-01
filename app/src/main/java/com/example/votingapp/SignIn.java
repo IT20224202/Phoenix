@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,7 @@ public class SignIn extends AppCompatActivity {
 
     EditText username, password;
     Button signIn;
-
+    //db connectivity
     DBHelper DB;
 
     @Override
@@ -46,6 +47,8 @@ public class SignIn extends AppCompatActivity {
                     if (checkUsernamePassword == true) {
                         Toast.makeText(SignIn.this, "Successfully Signed In!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                        //passing username
+                        intent.putExtra("username", Username);
                         startActivity(intent);
                     }else {
                         Toast.makeText(SignIn.this, "Invalid Username or Password! Try again", Toast.LENGTH_SHORT).show();

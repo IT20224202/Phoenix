@@ -8,6 +8,7 @@
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/drawable/ic_lock_white.xml" value="0.1" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/drawable/ic_styles1.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/drawable/ic_vote.xml" value="0.22592592592592592" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/drawable/progress_track.xml" value="0.1" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/drawable/round_border.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout-w1240dp/content_scrolling.xml" value="0.2359375" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout-w936dp/content_scrolling.xml" value="0.1875" />
@@ -26,8 +27,13 @@
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_single_candidate.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_single_event.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_single_voter.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_update_candidate.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_update_event.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_update_user.xml" value="0.20972222222222223" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_update_voter.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_view_candidates.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_view_voters.xml" value="0.20972222222222223" />
+        <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/activity_voting.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/content_scrolling.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/layout/my_events_single_item.xml" value="0.2" />
         <entry key="..\:/Users/devin/AndroidStudioProjects/VotingApp/app/src/main/res/menu/menu_create_an_event.xml" value="0.2222222222222222" />

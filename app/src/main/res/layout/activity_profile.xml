@@ -28,8 +28,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/prof_image"
-            android:text="Sandunika Senavirathna"
             android:includeFontPadding="false"
+            android:text="Sandunika Senavirathna"
             android:textColor="#FFFFFF"
             android:textSize="34sp" />
 

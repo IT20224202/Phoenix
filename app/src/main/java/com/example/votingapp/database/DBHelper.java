@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 //import androidx.annotation.Nullable;
 
@@ -17,18 +20,14 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
 
-        //users table
         MyDB.execSQL("create Table users(name TEXT, username TEXT primary key, email TEXT, phoneNumber TEXT, password TEXT)");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        //users table
         MyDB.execSQL("drop Table if exists users");
     }
 
-    //users table
     //insert
     public Boolean insertData(String name, String username, String email, String phoneNumber, String password) {
 
@@ -49,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    //view
+    //view all
     public Cursor getData() {
         SQLiteDatabase MyDB = this.getReadableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from users", null);
@@ -99,13 +98,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //view one
-    public Cursor getOneData(String username) {
+    public Cursor getOneData(TextView username) {
         SQLiteDatabase MyDB = this.getReadableDatabase();
-        Cursor cursor = MyDB.rawQuery("select * from users where username = ?", new String[] {username});
+        Cursor cursor = MyDB.rawQuery("select * from users where username = ?", new String[] {String.valueOf(username)});
         return cursor;
     }
 
-    //user table
+    //validate functions
     public Boolean checkUsername(String username) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from users where username = ?", new String[] {username});
@@ -115,6 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
     }
 
+    //validate functions
     public Boolean checkUsernamePassword(String username, String password) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from users where username = ? and password = ?", new String[] {username, password});
@@ -122,6 +122,22 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    //get one - stack overflow
+    public HashMap<String, String> getUserInfo(String username) {
+        HashMap<String, String> userList = new HashMap<String, String>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM users where username ='"+username+"'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                //HashMap<String, String> map = new HashMap<String, String>();
+                userList.put("username", cursor.getString(1));
+                //userList.add(map);
+            }while (cursor.moveToNext());
+        }
+        return userList;
     }
 
 }

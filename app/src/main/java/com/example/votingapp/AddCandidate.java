@@ -34,12 +34,15 @@ public class AddCandidate extends AppCompatActivity {
         addC = (Button) findViewById(R.id.addC_add);
 
         DB = new DBCandidate(this);
+
         addC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String Name = name.getText().toString();
                 String Description = description.getText().toString();
                 String ID = id.getText().toString();
+
                 if (Name.equals("")||Description.equals("")||ID.equals(""))
                     Toast.makeText(AddCandidate.this, "Fields cannot be empty!", Toast.LENGTH_SHORT).show();
                 else {
@@ -48,7 +51,6 @@ public class AddCandidate extends AppCompatActivity {
                         Boolean insert = DB.addCandidate(Name, Description, ID);
                         if (insert == true) {
                             Toast.makeText(AddCandidate.this, "Candidate added successfully!", Toast.LENGTH_SHORT).show();
-
                             Intent intent = new Intent(getApplicationContext(), SingleEvent.class);
                             startActivity(intent);
                         }else {

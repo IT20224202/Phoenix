@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VotingApp">
         <activity
+            android:name=".Voting"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateEvent"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateCandidate"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateVoter"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateUser"
+            android:exported="true" />
+        <activity
             android:name=".Casting"
             android:exported="true" />
         <activity

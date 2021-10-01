@@ -40,6 +40,7 @@ public class ViewVoters extends AppCompatActivity {
                 Intent intent;
                 String text = voterList.getItemAtPosition(i).toString();
                 intent = new Intent(getApplicationContext(), SingleVoter.class);
+                intent.putExtra("username", listItem);
                 startActivity(intent);
             }
         });

@@ -2,6 +2,7 @@ package com.example.votingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -31,46 +32,40 @@ public class SingleCandidate extends AppCompatActivity {
         updateC = findViewById(R.id.singleC_edit);
         deleteC = findViewById(R.id.singleC_delete);
 
-        //update
-        updateC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nameTXT = name.getText().toString();
-                String descTXT = description.getText().toString();
-                String idTXT = id.getText().toString();
-                Boolean checkUpdateCandidate = DB.updateCandidate(nameTXT, descTXT, idTXT);
-                if (checkUpdateCandidate == true)
-                    Toast.makeText(SingleCandidate.this, "Candidate updated!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(SingleCandidate.this, "Candidate not updated!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //delete
-        deleteC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String idTXT = id.getText().toString();
-                Boolean checkDeleteEvent = DB.deleteCandidate(idTXT);
-                if (checkDeleteEvent == true)
-                    Toast.makeText(SingleCandidate.this, "Candidate deleted!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(SingleCandidate.this, "Candidate not deleted!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //show data
-        showCandidateData();
-    }
+        Intent intent = getIntent();
 
-    private void showCandidateData() {
+       //String ID = intent.getExtras().getString("id");
 
-        Cursor res = DB.getCandidates();
+        //Cursor res = (Cursor) DB.getCandidateInfo(ID);
 
-        String candidate_name = res.getString(0);
+        /*String candidate_name = res.getString(0);
         String candidate_desc = res.getString(1);
         String candidate_id = res.getString(2);
 
         name.setText(candidate_name);
         description.setText(candidate_desc);
-        id.setText(candidate_id);
+        id.setText(candidate_id);*/
+
+        //update
+        updateC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SingleCandidate.this,UpdateCandidate.class);
+                startActivity(intent);
+            }
+        });
+
+        //delete
+        deleteC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String idTXT = id.getText().toString();
+                Boolean checkDeleteCandidate = DB.deleteCandidate(idTXT);
+                if (checkDeleteCandidate == true)
+                    Toast.makeText(SingleCandidate.this, "Candidate deleted!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(SingleCandidate.this, "Candidate not deleted!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

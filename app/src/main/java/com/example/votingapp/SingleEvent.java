@@ -43,6 +43,31 @@ public class SingleEvent extends AppCompatActivity {
         viewC = findViewById(R.id.singleE_viewC);
         viewV = findViewById(R.id.singleE_viewV);
 
+        Intent intent = getIntent();
+
+        //String eventID = intent.getExtras().getString("eventID");
+
+        //Cursor res = (Cursor) DB.getEventInfo(eventID);
+
+        /*String event_name = res.getString(0);
+        String event_fullName = res.getString(0);
+        String event_desc = res.getString(1);
+        String event_noOfVotes = res.getString(2);
+        String event_date = res.getString(3);
+        String event_sTime = res.getString(4);
+        String event_eTime = res.getString(5);
+        String event_id = res.getString(6);
+        String user_password = res.getString(7);
+
+        name.setText(event_name);
+        fullName.setText(event_fullName);
+        description.setText(event_desc);
+        noOfVotes.setText(event_noOfVotes);
+        date.setText(event_date);
+        sTime.setText(event_sTime);
+        eTime.setText(event_eTime);
+        id.setText(event_id);
+        password.setText(user_password);*/
 
         addC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,27 +101,15 @@ public class SingleEvent extends AppCompatActivity {
             }
         });
 
-
         //update
         updateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameTXT = name.getText().toString();
-                //String fullNameTXT = fullName.getText().toString();
-                String descTXT = description.getText().toString();
-                String noOfVotesTXT = noOfVotes.getText().toString();
-                String dateTXT = date.getText().toString();
-                String sTimeTXT = sTime.getText().toString();
-                String eTimeTXT = eTime.getText().toString();
-                String idTXT = id.getText().toString();
-                String passTXT = password.getText().toString();
-                Boolean checkUpdateEvent = DB.updateEvents(nameTXT, descTXT, noOfVotesTXT, dateTXT, sTimeTXT, eTimeTXT, idTXT, passTXT);
-                if (checkUpdateEvent == true)
-                    Toast.makeText(SingleEvent.this, "Event updated!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(SingleEvent.this, "Event not updated!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SingleEvent.this,UpdateEvent.class);
+                startActivity(intent);
             }
         });
+
         //delete
         deleteEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,33 +122,5 @@ public class SingleEvent extends AppCompatActivity {
                     Toast.makeText(SingleEvent.this, "Event not deleted!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //show data
-        showEventData();
-    }
-    private void showEventData() {
-
-        Cursor res = DB.getEvents();
-
-        String event_name = res.getString(0);
-        String event_fullName = res.getString(0);
-        String event_desc = res.getString(1);
-        String event_noOfVotes = res.getString(2);
-        String event_date = res.getString(3);
-        String event_sTime = res.getString(4);
-        String event_eTime = res.getString(5);
-        String event_id = res.getString(6);
-        String user_password = res.getString(7);
-
-        name.setText(event_name);
-        fullName.setText(event_fullName);
-        description.setText(event_desc);
-        noOfVotes.setText(event_noOfVotes);
-        date.setText(event_date);
-        sTime.setText(event_sTime);
-        eTime.setText(event_eTime);
-        id.setText(event_id);
-        password.setText(user_password);
-
     }
 }

@@ -33,15 +33,19 @@ public class ViewCandidates extends AppCompatActivity {
         getSupportActionBar().hide();
 
         DB = new DBCandidate(this);
+
         listItem = new ArrayList<>();
         candidateList = findViewById(R.id.view_candidates);
+
         viewCandidates();
+
         candidateList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
                 Intent intent;
                 String text = candidateList.getItemAtPosition(i).toString();
                 intent = new Intent(getApplicationContext(), SingleCandidate.class);
+                intent.putExtra("id", listItem);
                 startActivity(intent);
             }
         });

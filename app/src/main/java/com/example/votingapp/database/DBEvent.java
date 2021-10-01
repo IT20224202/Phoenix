@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.SimpleCursorAdapter;
 
+import java.util.HashMap;
+
 //import androidx.annotation.Nullable;
 
 public class DBEvent extends SQLiteOpenHelper {
@@ -18,18 +20,16 @@ public class DBEvent extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
 
-        //events table
         MyDB.execSQL("create Table events(name TEXT, description TEXT, noOfVotes TEXT, date TEXT, startTime TEXT, endTime TEXT, eventID TEXT primary key, password TEXT)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        //events table
+
         MyDB.execSQL("drop Table if exists events");
     }
 
-    //events table
     //insert data
     public Boolean addEvents(String name, String description, String noOfVotes, String date, String startTime, String endTime, String eventID, String password) {
 
@@ -113,9 +113,7 @@ public class DBEvent extends SQLiteOpenHelper {
         return cursor;
     }
 
-
-
-    //event table
+    //validate event
     public Boolean checkEventID(String eventID) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("select * from events where eventID = ?", new String[] {eventID});
@@ -123,6 +121,29 @@ public class DBEvent extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    public Boolean checkEventExist(String eventID, String password) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("select * from events where eventID = ? and password = ?", new String[] {eventID, password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
+    //get one - stack overflow
+    public HashMap<String, String> getEventInfo(String eventID) {
+        HashMap<String, String> eventList = new HashMap<String, String>();
+        SQLiteDatabase database = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM events where eventID ='"+eventID+"'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                eventList.put("eventID", cursor.getString(6));
+            }while (cursor.moveToNext());
+        }
+        return eventList;
     }
 
 }

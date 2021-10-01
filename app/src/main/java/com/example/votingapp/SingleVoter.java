@@ -2,6 +2,7 @@ package com.example.votingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -31,20 +32,29 @@ public class SingleVoter extends AppCompatActivity {
         updateV = findViewById(R.id.singleV_edit);
         deleteV = findViewById(R.id.singleV_delete);
 
+        Intent intent = getIntent();
+
+        String Username = intent.getExtras().getString("username");
+
+        Cursor res = (Cursor) DB.getVoterInfo(Username);
+
+        String voter_name = res.getString(0);
+        String voter_username = res.getString(1);
+        String voter_phone = res.getString(2);
+
+        name.setText(voter_name);
+        username.setText(voter_username);
+        phone.setText(voter_phone);
+
         //update
         updateV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameTXT = name.getText().toString();
-                String usernameTXT = username.getText().toString();
-                String phoneTXT = phone.getText().toString();
-                Boolean checkUpdateVoter = DB.updateVoter(nameTXT, usernameTXT, phoneTXT);
-                if (checkUpdateVoter == true)
-                    Toast.makeText(SingleVoter.this, "Voter updated!", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(SingleVoter.this, "Voter not updated!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SingleVoter.this,UpdateVoter.class);
+                startActivity(intent);
             }
         });
+
         //delete
         deleteV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +67,5 @@ public class SingleVoter extends AppCompatActivity {
                     Toast.makeText(SingleVoter.this, "Voter not deleted!", Toast.LENGTH_SHORT).show();
             }
         });
-
-        //show data
-        showVoterData();
-    }
-
-    private void showVoterData() {
-
-        Cursor res = DB.getVoter();
-
-        String voter_name = res.getString(0);
-        String voter_username = res.getString(1);
-        String voter_phone = res.getString(2);
-
-        name.setText(voter_name);
-        username.setText(voter_username);
-        phone.setText(voter_phone);
     }
 }
